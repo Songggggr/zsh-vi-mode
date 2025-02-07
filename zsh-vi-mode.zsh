@@ -1581,7 +1581,8 @@ function zvm_range_handler() {
   # escape non-printed characters (e.g. ^[)
   if [[ $(zvm_escape_non_printed_characters "$keys") =~
     ${ZVM_VI_OPPEND_ESCAPE_BINDKEY/\^\[/\\^\\[} ]]; then
-    return 1
+    # 修复 Esc 不能切换到 normal 模式 https://github.com/jeffreytse/zsh-vi-mode/issues/295
+    return 0
   fi
 
   # Enter visual mode or visual line mode
